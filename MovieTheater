@@ -1,0 +1,39 @@
+CREATE TABLE movie (
+	movie_id SERIAL PRIMARY KEY,
+	movie_name VARCHAR(30),
+	movie_year VARCHAR(10),
+	movie_genre VARCHAR(15)
+);
+
+SELECT * FROM movie
+---------------------------------------
+CREATE TABLE concession(
+	concession_id SERIAL PRIMARY KEY,
+	concession_name VARCHAR(12),
+	concession_price NUMERIC(2,2)
+
+);
+SELECT * FROM concession
+---------------------------------------
+CREATE TABLE ticket(
+	ticket_id SERIAL PRIMARY KEY,
+	ticket_number INTEGER,
+	ticket_name DATE,
+	FOREIGN KEY(ticket_id)
+		REFERENCES ticket(ticket_id)
+);
+
+SELECT * FROM ticket
+---------------------------------------
+CREATE TABLE customer(
+	customer_id SERIAL PRIMARY KEY,
+	customer_firstname VARCHAR(30),
+	customer_lastname VARCHAR (40),
+	FOREIGN KEY(movie_id)
+		REFERENCES movie(movie_id),
+	FOREIGN KEY(ticket_id)
+		REFERENCES ticket(ticket_id),
+	FOREIGN KEY(concession_id)
+		REFERENCES concession(concession_id)
+
+);
